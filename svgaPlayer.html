@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>svgaTest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+#box {
+    width: 100vh;
+height: 100vh;
+}
+
+#demoCanvas {
+width: 300px;
+height: 300px;
+margin: 0 auto;
+border: 2px salmon solid;
+}
+.defaultCanvas {
+width: 300px;
+height: 300px;
+margin: 0 auto;
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>svgaTest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+#box {
+    width: 100vh;
+height: 100vh;
+}
+
+#demoCanvas {
+width: 300px;
+height: 300px;
+margin: 0 auto;
+border: 2px salmon solid;
+}
+.defaultCanvas {
+width: 300px;
+height: 300px;
+margin: 0 auto;
+border: 2px black solid;
+}
+</style>
+</head>
+
+<body>
+<div id="box" >
+<button onclick="toAnimation()">开始播放动画</button>
+<button onclick="pauseAnimation()">暂停在当前帧</button>
+<button onclick="stopAnimation()">停止播放动画</button>
+<div id="demoCanvas"></div>
+
+<!-- 默认播放-循环播放 -->
+<div class="defaultCanvas" src="http://sl.file.diaodiaosocial.com/1595325777179.svga" loops="0" clearsAfterStop="true"></div>
+<!-- 默认播放-播放一次 -->
+<div class="defaultCanvas" src="http://sl.file.diaodiaosocial.com/1595325777179.svga" loops="1" clearsAfterStop="true"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/svgaplayerweb@2.0.7/build/svga.min.js"></script>
+<script>
+
+var player = new SVGA.Player('#demoCanvas');
+var parser = new SVGA.Parser('#demoCanvas'); // 如果你需要支持 IE6+，那么必须把同样的选择器传给 Parser。
+player.clearsAfterStop=false;
+
+//开始播放动画
+function toAnimation(){
+    parser.load('http://sl.file.diaodiaosocial.com/1595325777179.svga', function(videoItem) {
+            player.loops=1; // 设置循环播放次数是1
+            player.setVideoItem(videoItem);
+            player.startAnimation();
+            player.onFinished(function(){
+                alert("动画停止了！！！娃哈哈")
+                });
+            })
+}
+//暂停在当前帧
+function pauseAnimation(){
+    player.pauseAnimation();
+}
+//停止播放动画，如果 clearsAfterStop === true，将会清空画布
+function stopAnimation(){
+    player.stopAnimation();
+}
+</script>
+</body>
+</html>
